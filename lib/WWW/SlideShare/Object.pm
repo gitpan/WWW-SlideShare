@@ -5,7 +5,7 @@ use Data::Dumper;
 use Carp qw(confess);
 
 our $AUTOLOAD;
-our $VERSION="1.0";
+our $VERSION="1.01";
 
 sub new
 {	

@@ -8,7 +8,7 @@ use XML::Parser;
 use Carp qw(confess);
 
 our $AUTOLOAD;
-our $VERSION='1.0';
+our $VERSION='1.01';
 
 use constant {
 		TIMEOUT => 10,
@@ -150,7 +150,7 @@ A perl interface to the Slideshare Web Service API
 
 The usage of the API is demonstrated here -
 
-	my $ss = WWW::SlideShare->new('api_key' => '2C2y6buG', 'secret' => 'vUMu5xmo');
+	my $ss = WWW::SlideShare->new('api_key' => $api_key, 'secret' => $secret);
 	ok (ref $ss, "Object creation");
 
 	my $slide =  $ss->get_slideshow({ 'slideshow_id' => 4383743 });
@@ -170,45 +170,46 @@ All parameters are passed as key-value pairs in a hash reference.
 
 =head2  get_slideshow
 	
-	This method can be called in one of two ways, by providing slideshow_id or slideshow_url. It always returns a reference a SlideShare slideshow object.
+	This can be called in one of two ways, by providing slideshow_id or slideshow_url. It always returns a slideshow object.
 
 	$slideshow = get_slideshow({ slideshow_id => $id })
 	
 	$slideshow = get_slideshow({ slideshow_url => $url })
 
-=head2  get_slideshow_by_tag
+=head2  get_slideshows_by_tag
 
-	This method accepts a tag compulsorily and other optional key-value pairs supported by the SlideShare API and returns a reference to an array of SlideShare slideshow objects.
+	This accepts a tag and other optional key-value pairs supported by the API, returning a reference to an array of slideshow objects.
 
 	$slideshows = get_slideshow_by_tag({ tag => $tag, ... })
 
 =head2  get_slideshows_by_user
 
-	This method accepts username for the user whose slideshows are to be accessed and optional detailed boolean and returns a reference to an array of SlideShare slideshow objects.
+	This accepts username of user whose slideshows are to be accessed and returns a reference to an array of slideshow objects.
+	detailed is an optional parameter
 
 	$slideshows = get_slideshows_by_user({ 'username_for' => $user, 'detailed' => 0 });
 
 =head2  search_slideshows
 
-	This method accepts the keyword/phrase contained in slideshows and returns a reference to an array of SlideShare slideshow objects.
+	This accepts the keyword/phrase contained in slideshows and returns a reference to an array of slideshow objects.
 
 	$slideshows = search_slideshows({ 'q' => $keyword, ... });
 
 =head2  get_user_groups
 		
-	This method accepts a username and returns a reference to an array of SlideShare group objects corresponding to that user.
+	This accepts a username and returns a reference to an array of SlideShare group objects corresponding to that user.
 
 	$gps = $ss->get_user_groups({ 'username_for' => $user, ... });
 
 =head2  get_user_contacts
 
-	This method accepts a username and returns a reference to an array of SlideShare contact objects corresponding to that user.
+	This accepts a username and returns a reference to an array of SlideShare contact objects corresponding to that user.
 
 	$contacts = $ss->get_user_contacts({ 'username_for' => $user, ... });
 
 =head2  get_user_tags
 
-	This method accepts a username and returns a reference to an array of SlideShare tag objects corresponding to that user.
+	This accepts a username and returns a reference to an array of SlideShare tag objects corresponding to that user.
 
 	$tags = $ss->get_user_tags({ 'username_for' => $user, ... });
 
